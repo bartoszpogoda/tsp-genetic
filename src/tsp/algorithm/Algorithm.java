@@ -1,12 +1,9 @@
 package tsp.algorithm;
 
-import tsp.algorithm.mutation.MutationOperator;
-import tsp.algorithm.mutation.SwapMutationOperator;
-import tsp.algorithm.population.PathPopulation;
-
 import tsp.algorithm.crossover.CrossoverOperator;
-import tsp.algorithm.crossover.PMXCrossoverOperator;
 import tsp.algorithm.individual.PathIndividual;
+import tsp.algorithm.mutation.MutationOperator;
+import tsp.algorithm.population.PathPopulation;
 import tsp.algorithm.thread.AlgorithmTerminator;
 import tsp.algorithm.thread.BestDistanceSampler;
 import tsp.algorithm.tournament.TournamentChooser;

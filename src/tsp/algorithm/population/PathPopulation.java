@@ -46,8 +46,9 @@ public class PathPopulation {
 
 		PathIndividualGenerator pathIndividualGenerator = new PathIndividualGenerator();
 
-		// TODO consider one greedy?
-		for (int i = 0; i < pathPopulation.population.length; i++) {
+		pathPopulation.population[0] = pathIndividualGenerator.generateGreedyPath(instance);
+		
+		for (int i = 1; i < pathPopulation.population.length; i++) {
 			pathPopulation.population[i] = pathIndividualGenerator.generateRandomPath(instance);
 		}
 
