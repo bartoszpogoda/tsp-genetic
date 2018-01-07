@@ -1,7 +1,5 @@
 package test;
 
-import java.util.Random;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +8,7 @@ import org.mockito.Mockito;
 import tsp.algorithm.individual.PathIndividual;
 import tsp.algorithm.mutation.MutationOperator;
 import tsp.algorithm.mutation.SwapMutationOperator;
+import tsp.algorithm.util.RandomGenerator;
 
 public class SwapMutationOperatorTest {
 	private PathIndividual path = null;
@@ -22,8 +21,8 @@ public class SwapMutationOperatorTest {
 	@Test
 	public void shouldSwapTwoCitiesOnMutation() {
 		// given
-		Random randomMock = Mockito.mock(Random.class);
-		Mockito.when(randomMock.nextInt()).thenReturn(1, 2);
+		RandomGenerator randomMock = Mockito.mock(RandomGenerator.class);
+		Mockito.when(randomMock.generateIntInRangeInclusive(Mockito.anyInt(), Mockito.anyInt())).thenReturn(1, 2);
 		MutationOperator mutationOperator = new SwapMutationOperator(randomMock);
 		
 		// when

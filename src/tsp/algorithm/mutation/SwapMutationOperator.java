@@ -3,16 +3,17 @@ package tsp.algorithm.mutation;
 import java.util.Random;
 
 import tsp.algorithm.individual.PathIndividual;
+import tsp.algorithm.util.RandomGenerator;
 
 public class SwapMutationOperator implements MutationOperator {
 
-	Random randomGenerator;
+	RandomGenerator randomGenerator;
 
 	public SwapMutationOperator() {
-		randomGenerator = new Random();
+		randomGenerator = new RandomGenerator();
 	}
 
-	public SwapMutationOperator(Random randomGenerator) {
+	public SwapMutationOperator(RandomGenerator randomGenerator) {
 		this.randomGenerator = randomGenerator;
 	}
 
@@ -33,10 +34,8 @@ public class SwapMutationOperator implements MutationOperator {
 	private SwapPositions generateRandomPositions(PathIndividual pathIndividual) {
 		SwapPositions swapPositions = new SwapPositions();
 
-		swapPositions.smallerPosition = randomGenerator.nextInt(pathIndividual.getLength() - 3) + 1;
-		swapPositions.biggerPosition = randomGenerator
-				.nextInt((pathIndividual.getLength() - 1 - (swapPositions.smallerPosition + 1)))
-				+ swapPositions.smallerPosition + 1;
+		swapPositions.smallerPosition = randomGenerator.generateIntInRangeInclusive(1, pathIndividual.getLength() - 2);
+		swapPositions.biggerPosition = randomGenerator.generateIntInRangeInclusive(swapPositions.smallerPosition + 1, pathIndividual.getLength() - 2);
 
 		return swapPositions;
 	}
