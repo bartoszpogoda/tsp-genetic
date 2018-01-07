@@ -58,30 +58,23 @@ public class PMXCrossoverOperator implements CrossoverOperator {
 	}
 
 	private int findPositionForValueInSecondParent(MatchingSectionBounds matchingSectionBounds, PathIndividual firstParent, PathIndividual secondParent, int currentPositionInSecondParent) {
+		int correspondingValueInFirstParent = firstParent.getCity(currentPositionInSecondParent);
 		
-		boolean foundPositionForCity = false;
-		while(!foundPositionForCity) {
-			int correspondingValueInFirstParent = firstParent.getCity(currentPositionInSecondParent);
-			
-			// find value in second parent
-			boolean valueFound = false;
-			int foundIndex = -1;
-			for(int j = 1 ; j <= secondParent.getLength() - 2 && !valueFound ; j++) {
-				if(secondParent.getCity(j) == correspondingValueInFirstParent) {
-					valueFound = true;
-					foundIndex = j;
-				}
-			}
-			
-			if(matchingSectionBounds.lowerBound <= foundIndex && matchingSectionBounds.upperBound >= foundIndex) {
-				currentPositionInSecondParent = foundIndex;
-			} else {
-				return foundIndex;
+		// find value in second parent
+		boolean valueFound = false;
+		int foundIndex = -1;
+		for(int j = 1 ; j <= secondParent.getLength() - 2 && !valueFound ; j++) {
+			if(secondParent.getCity(j) == correspondingValueInFirstParent) {
+				valueFound = true;
+				foundIndex = j;
 			}
 		}
 		
-		// shouldn't happen
-		return -1;
+		if(matchingSectionBounds.lowerBound <= foundIndex && matchingSectionBounds.upperBound >= foundIndex) {
+			return findPositionForValueInSecondParent(matchingSectionBounds, firstParent, secondParent, foundIndex);
+		} else {
+			return foundIndex;
+		}
 	}
 
 	private void copyRemainingCities(PathIndividual firstParent, PathIndividual secondParent, PathIndividual child,
