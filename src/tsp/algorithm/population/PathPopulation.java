@@ -21,6 +21,10 @@ public class PathPopulation {
         return population[index];
     }
     
+    public int getSize() {
+    	return population.length;
+    }
+    
     public PathIndividual findTheFittest(FitnessCalculator fitnessCalculator) {
     	PathIndividual currentBestPath = null;
     	double currentBestPathFitness = 0;

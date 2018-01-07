@@ -1,6 +1,7 @@
 package test;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -10,7 +11,7 @@ import tsp.algorithm.individual.PathIndividual;
 import tsp.algorithm.util.RandomGenerator;
 
 public class PMXCrossoverOperatorTest {
-	
+
 	@Test
 	public void shouldPerformCrossoverCorrectly() {
 		// given
@@ -24,7 +25,7 @@ public class PMXCrossoverOperatorTest {
 		firstParent.setCity(6, 2);
 		firstParent.setCity(7, 4);
 		firstParent.setCity(8, 6);
-		
+
 		PathIndividual secondParent = new PathIndividual(10);
 		secondParent.setStartCity(0);
 		secondParent.setCity(1, 8);
@@ -35,14 +36,14 @@ public class PMXCrossoverOperatorTest {
 		secondParent.setCity(6, 3);
 		secondParent.setCity(7, 2);
 		secondParent.setCity(8, 1);
-		
+
 		RandomGenerator randomMock = Mockito.mock(RandomGenerator.class);
-		Mockito.when(randomMock.generateIntInRangeInclusive(Mockito.anyInt(), Mockito.anyInt())).thenReturn(4,7);
-		
+		Mockito.when(randomMock.generateIntInRangeInclusive(Mockito.anyInt(), Mockito.anyInt())).thenReturn(4, 7);
+
 		CrossoverOperator crossoverOperator = new PMXCrossoverOperator(randomMock);
-		
+
 		PathIndividual child = crossoverOperator.crossover(firstParent, secondParent);
-		
+
 		Assert.assertEquals(5, child.getCity(1));
 		Assert.assertEquals(3, child.getCity(2));
 		Assert.assertEquals(6, child.getCity(3));
@@ -54,5 +55,5 @@ public class PMXCrossoverOperatorTest {
 		Assert.assertEquals(0, child.getCity(9));
 		Assert.assertEquals(0, child.getCity(0));
 	}
-	
+
 }

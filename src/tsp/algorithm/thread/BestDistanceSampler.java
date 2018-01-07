@@ -24,7 +24,11 @@ public class BestDistanceSampler extends Thread {
 	
 	private String filename = "sampling.txt";
 
-	public BestDistanceSampler(Algorithm algorithm) {
+	public BestDistanceSampler() {
+		
+	}
+	
+	public void setAlgorithm(Algorithm algorithm) {
 		this.algorithm = algorithm;
 	}
 
@@ -61,6 +65,7 @@ public class BestDistanceSampler extends Thread {
 			try {
 				double currentBestDistance = algorithm.getCurrentBestDistance();
 				writer.println(timeInMs + ";" + (int)currentBestDistance);
+				System.out.println(timeInMs + ";" + (int)currentBestDistance);
 				
 				if(timeInMs % 30000 == 0) {
 					writerEvery30s.println(timeInMs + ";" + (int)currentBestDistance);
@@ -81,4 +86,6 @@ public class BestDistanceSampler extends Thread {
 		writer.close();
 		writerEvery30s.close();
 	}
+
+	
 }

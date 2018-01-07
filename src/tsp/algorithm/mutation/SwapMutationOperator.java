@@ -1,7 +1,5 @@
 package tsp.algorithm.mutation;
 
-import java.util.Random;
-
 import tsp.algorithm.individual.PathIndividual;
 import tsp.algorithm.util.RandomGenerator;
 
@@ -34,7 +32,7 @@ public class SwapMutationOperator implements MutationOperator {
 	private SwapPositions generateRandomPositions(PathIndividual pathIndividual) {
 		SwapPositions swapPositions = new SwapPositions();
 
-		swapPositions.smallerPosition = randomGenerator.generateIntInRangeInclusive(1, pathIndividual.getLength() - 2);
+		swapPositions.smallerPosition = randomGenerator.generateIntInRangeInclusive(1, pathIndividual.getLength() - 3);
 		swapPositions.biggerPosition = randomGenerator.generateIntInRangeInclusive(swapPositions.smallerPosition + 1, pathIndividual.getLength() - 2);
 
 		return swapPositions;

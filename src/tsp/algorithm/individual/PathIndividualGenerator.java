@@ -24,7 +24,7 @@ public class PathIndividualGenerator {
 			randomPath.setCity(pathIndex, availableCities.remove(randomAvailableCitiesPosition));
 			pathIndex++;
 		}
-
+		
 		return randomPath;
 	}
 
