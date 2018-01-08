@@ -37,4 +37,9 @@ public class SwapMutationOperator implements MutationOperator {
 
 		return swapPositions;
 	}
+	
+	@Override
+	public String toString() {
+		return "Swap Mutation Operator";
+	}
 }

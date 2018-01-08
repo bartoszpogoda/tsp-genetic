@@ -42,4 +42,8 @@ public class InvertMutationOperator implements MutationOperator {
 		return inversionRange;
 	}
 
+	@Override
+	public String toString() {
+		return "Invert Mutation Operator";
+	}
 }

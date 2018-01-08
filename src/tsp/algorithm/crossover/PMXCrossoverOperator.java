@@ -114,4 +114,9 @@ public class PMXCrossoverOperator implements CrossoverOperator {
 
 		return matchingSectionBounds;
 	}
+	
+	@Override
+	public String toString() {
+		return "PMX Crossover Operator";
+	}
 }

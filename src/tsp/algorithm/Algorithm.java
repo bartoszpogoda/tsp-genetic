@@ -44,13 +44,18 @@ public class Algorithm {
 	}
 
 	public synchronized PathIndividual execute(Instance instance) {
-		algorithmTerminator.start();
-		bestDistanceSampler.start();
+		currentBest = null;
+		currentBestDistance = Double.MAX_VALUE;
+		running = true;
 		
 		fitnessCalculator = new FitnessCalculator(instance);
 		tournamentChooser = new TournamentChooser(fitnessCalculator, tournamentSize);
 
 		PathPopulation initialPopulation = PathPopulation.generateInitialPopulation(populationSize, instance);
+		updateCurrestBestPath(initialPopulation.findTheFittest(fitnessCalculator));
+		
+		bestDistanceSampler.start();
+		algorithmTerminator.start();
 		
 		startEvolution(instance, initialPopulation);
 
@@ -160,8 +165,22 @@ public class Algorithm {
 			return this;
 		}
 		
-		public Algorithm create() {
+		public Algorithm build() {
 			return builtAlgorithm;
+		}
+		
+		@Override
+		public String toString() {
+			StringBuilder stringBuilder = new StringBuilder();
+			
+			stringBuilder.append("Wielkoœæ populacji: " + builtAlgorithm.populationSize + "\n");
+			stringBuilder.append("Wielkosæ turnieju: " + builtAlgorithm.tournamentSize + "\n");
+			stringBuilder.append("Operator mutacji: " + builtAlgorithm.mutationOperator + "\n");
+			stringBuilder.append("Wspó³czynnik mutacji: " + builtAlgorithm.mutationRate + "\n");
+			stringBuilder.append("Operator krzy¿owania: " + builtAlgorithm.crossoverOperator + "\n");
+			stringBuilder.append("Wspó³czynnik krzy¿owania: " + builtAlgorithm.crossoverRate + "\n");
+			
+			return stringBuilder.toString();
 		}
 
 	}

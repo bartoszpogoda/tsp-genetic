@@ -22,28 +22,32 @@ public class PerformanceTests {
 
 		// eil101.tsp
 		long timeLimitMs = 6 * 60 * 1000;
-//		run("input/eil101.tsp", timeLimitMs, 10, fixedTournamentSize, 0.8, 0.01, fixedCrossoverOperator,
-//				new InvertMutationOperator(), "101_invert_pop10");
-//		run("input/eil101.tsp", timeLimitMs, 50, fixedTournamentSize, 0.8, 0.01, fixedCrossoverOperator,
-//				new InvertMutationOperator(), "101_invert_pop50");
-//		run("input/eil101.tsp", timeLimitMs, 100, fixedTournamentSize, 0.8, 0.01, fixedCrossoverOperator,
-//				new InvertMutationOperator(), "101_invert_pop100");
+//		run("input/eil101.tsp", timeLimitMs, 10, fixedTournamentSize, 0.8, 0.02, fixedCrossoverOperator,
+//				new InvertMutationOperator(), "101_02");
+//		run("input/eil101.tsp", timeLimitMs, 10, fixedTournamentSize, 0.8, 0.05, fixedCrossoverOperator,
+//				new InvertMutationOperator(), "101_05");
+//		run("input/eil101.tsp", timeLimitMs, 10, fixedTournamentSize, 0.8, 0.1, fixedCrossoverOperator,
+//				new InvertMutationOperator(), "101_1");
 
-		// rbg403.atsp
-//		run("input/rbg403.atsp", timeLimitMs, 40, fixedTournamentSize, 0.8, 0.01, fixedCrossoverOperator,
-//				new SwapMutationOperator(), "403_swap_pop40");
-		run("input/rbg403.atsp", timeLimitMs, 200, 10, 0.8, 0.01, fixedCrossoverOperator,
-				new SwapMutationOperator(), "403_swap_pop200");
-		run("input/rbg403.atsp", timeLimitMs, 400, fixedTournamentSize, 0.8, 0.01, fixedCrossoverOperator,
-				new SwapMutationOperator(), "403_swap_pop400");
+//		// rbg403.atsp
+//		run("input/rbg403.atsp", timeLimitMs, 40, fixedTournamentSize, 0.8, 0.02, fixedCrossoverOperator,
+//				new SwapMutationOperator(), "403_02");
+//		run("input/rbg403.atsp", timeLimitMs, 40, fixedTournamentSize, 0.8, 0.05, fixedCrossoverOperator,
+//				new SwapMutationOperator(), "403_05");
+//		run("input/rbg403.atsp", timeLimitMs, 40, fixedTournamentSize, 0.8, 0.1, fixedCrossoverOperator,
+//				new SwapMutationOperator(), "403_1");
 
 		// eil101.tsp
-//		run("input/d1291.tsp", timeLimitMs, 129, fixedTournamentSize, 0.8, 0.01, fixedCrossoverOperator,
-//				new InvertMutationOperator(), "1291_invert_pop129");
+		run("input/d1291.tsp", timeLimitMs, 129, fixedTournamentSize, 0.8, 0.02, fixedCrossoverOperator,
+				new InvertMutationOperator(), "1291_02");
+		run("input/d1291.tsp", timeLimitMs, 129, fixedTournamentSize, 0.8, 0.05, fixedCrossoverOperator,
+				new InvertMutationOperator(), "1291_05");
+		run("input/d1291.tsp", timeLimitMs, 129, fixedTournamentSize, 0.8, 0.1, fixedCrossoverOperator,
+				new InvertMutationOperator(), "1291_1");
 //		run("input/d1291.tsp", timeLimitMs, 645, fixedTournamentSize, 0.8, 0.01, fixedCrossoverOperator,
-//				new InvertMutationOperator(), "1291_invert_pop645");
+//				new SwapMutationOperator(), "1291_swap_pop645");
 //		run("input/d1291.tsp", timeLimitMs, 1290, fixedTournamentSize, 0.8, 0.01, fixedCrossoverOperator,
-//				new InvertMutationOperator(), "1291_invert_pop1290");
+//				new SwapMutationOperator(), "1291_swap_pop1290");
 	}
 
 	private static void run(String instanceFilename, long timeLimitMs, int populationSize, int tournamentSize,
@@ -61,7 +65,7 @@ public class PerformanceTests {
 		Algorithm algorithm = new Algorithm.AlgorithmBuilder().algorithmTerminator(algorithmTerminator)
 				.bestDistanceSampler(bestDistanceSampler).crossoverOperator(crossoverOperator)
 				.crossoverRate(crossoverRate).mutationOperator(mutationOperator).mutationRate(mutationRate)
-				.populationSize(populationSize).tournamentSize(tournamentSize).create();
+				.populationSize(populationSize).tournamentSize(tournamentSize).build();
 
 		PathIndividual path = algorithm.execute(instance);
 
