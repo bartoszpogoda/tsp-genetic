@@ -375,19 +375,42 @@ Optymalna długość ścieżki: 50801
 
 
 \newpage
+
+\subsection{Porównanie z algorytmem opartym na Tabu Search}
+
+\subsubsection{Instancja - eil101.tsp}
+
+Najmniejszy bład względny uzyskany metodą tabu search: 0.00\%\newline
+Najmniejszy bład względny uzyskany metodą ewolucyjną: 6.36\%
+
+\subsubsection{Instancja - rbg403.atsp}
+
+Najmniejszy bład względny uzyskany metodą tabu search: 1.34\%\newline
+Najmniejszy bład względny uzyskany metodą ewolucyjną: 10.14\%
+
+\subsubsection{Instancja - d1291.tsp}
+
+
+Najmniejszy bład względny uzyskany metodą tabu search: 115\%\newline
+Najmniejszy bład względny uzyskany metodą ewolucyjną: 108\%
+
 \section{Podsumowanie, wnioski}
 
-Zaimplementowany algorytm skutecznie radził sobie z znajdywaniem rozwiązań bliskich optymalnemu w krótkim czasie, mimo dużych rozmiarów instancji. 
+Zaimplementowany algorytm skutecznie radził sobie ze znajdywaniem rozwiązań bliskich optymalnemu w krótkim czasie, mimo dużych rozmiarów instancji. 
 
 \begin{itemize}
 \item Algorytm jest bardzo wrażliwy na konfigurację. Dobór parametrów do konkretnej instancji problemu jest kluczowy w celu uzyskania dobrych wyników.
-\item Mutacja typu Invert sprawdza się lepiej niż typu Swap dla problemu symetrycznego.
-\item Mutacja typu Invert sprawdza się gorzej niż typu Swap dla problemu asymetrycznego.
+\item Dla instancji średniej wielkości lepiej sprawdził się algorytm oparty na poszukiwaniu z zakazami. Jednak dla instancji dużej (1291) wynik bliższy optymalnemu w tym samym czasie znalazł algorytm ewolucyjny.
+\item Słabsze wyniki dla średnich instancji mogą wynikać ze złego dopasowania konfiguracji parametrów dla algorytmu genetycznego.
+\item Mutacja typu Invert sprawdza się lepiej dla problemu symetrycznego.
+\item Mutacja typu Swap sprawdza się lepiej dla problemu asymetrycznego.
 \item Dla każdej z instancji ustawienie parametru mutacji na najwyższą badaną wartośc (0.1) dało najlepsze rezultaty.
-\item Najszybszy wzrost jakości rozwiązań występuje w początkowej fazie działania algorytmu genetycznego (duże nachylenie w początkowej części wykresów)
-\item Okres szybkiego wzrostu jakości rozwiązań jest proporcjonalny do wielkości instancji. Dla instancji wielkości 101 trwał niecałe 10s, dla instancji wielkości 1291-  minutę.
-\item Dla małych instancji na wzrost jakości rozwiązań może mieć duży wpływ skonfigurowana dywersyfikacja, która w przypadku tego algorytmu może być zwiększona za pomocą parametru mutacji oraz wielkości turniejów.
+\item Najszybszy wzrost jakości rozwiązań występuje w początkowej fazie działania algorytmu genetycznego (duże nachylenie w początkowej części wykresów). Oznacza to najszybszy rozwój populacji w poczatkowym stadium ewolucji.
+\item W związku z powyższym algorytm jest w stanie znaleźć zadowalające rozwiązanie w bardzo szybkim czasie.
+\item Okres szybkiego wzrostu jakości rozwiązań jest proporcjonalny do wielkości instancji. Dla instancji wielkości 101 trwał niecałe 10s, dla instancji wielkości 1291-  minutę. 
+\item Na wzrost jakości rozwiązań może mieć duży wpływ skonfigurowana dywersyfikacja, która w przypadku tego algorytmu może być zwiększona za pomocą parametru mutacji oraz wielkości turniejów.
 \item Im mniejsze turnieje tym większa dywersyfikacja - dopuszczanych jest więcej słabszych rozwiązań, które dla dużych turniejów są wypierane przez rozwiązania najlepsze w populacji. Dywersyfikacja może prowadzić do lepszych rezultatów końcowych.
+\item Dla badanych instancji oraz pozostałych parametrów, najlepsze wyniki okazało się generować ustawienie najmniejszej wielkości populacji spośród badanych a więc 1/10*N (N- wielkość instancji). 
 
 \end{itemize}
 
